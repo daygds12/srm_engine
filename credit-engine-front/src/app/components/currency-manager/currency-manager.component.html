@@ -1,0 +1,42 @@
+<p>currency-manager works!</p>
+<div style="padding: 20px; font-family: Arial, sans-serif;">
+  <h2>Gerenciador de Moedas</h2>
+
+  <!-- Formulário de Cadastro -->
+  <div style="margin-bottom: 30px; border: 1px solid #ccc; padding: 15px; max-width: 400px;">
+    <h3>Cadastrar Nova Moeda</h3>
+    <div style="margin-bottom: 10px;">
+      <label>Código (ex: USD): </label><br>
+      <input [(ngModel)]="newCurrency.code" type="text" style="width: 100%; padding: 5px;">
+    </div>
+    <div style="margin-bottom: 10px;">
+      <label>Descrição: </label><br>
+      <input [(ngModel)]="newCurrency.description" type="text" style="width: 100%; padding: 5px;">
+    </div>
+    <button (click)="save()" style="padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer;">Salvar</button>
+
+    <p *ngIf="errorMessage" style="color: red; margin-top: 10px;">{{ errorMessage }}</p>
+  </div>
+
+  <!-- Tabela de Listagem -->
+  <h3>Moedas Cadastradas</h3>
+  <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 600px;">
+    <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th>ID</th>
+      <th>Código</th>
+      <th>Descrição</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of currencies">
+      <td>{{ c.id }}</td>
+      <td>{{ c.code }}</td>
+      <td>{{ c.description }}</td>
+    </tr>
+    <tr *ngIf="currencies.length === 0">
+      <td colspan="3" style="text-align: center;">Nenhuma moeda encontrada.</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
